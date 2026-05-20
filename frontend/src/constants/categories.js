@@ -1,0 +1,21 @@
+export const categories = [
+  "Aptitude",
+  "Quantitative Aptitude",
+  "Logical Reasoning",
+  "Verbal Ability",
+  "Data Interpretation",
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React.js",
+  "Node.js",
+  "Express.js",
+  "MongoDB",
+  "SQL",
+  "Python",
+  "Java",
+  "DBMS",
+  "OOP",
+  "Operating Systems",
+  "Computer Networks"
+];

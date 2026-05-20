@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply min-h-screen bg-sand bg-mesh text-ink antialiased;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+}
+
+.font-display {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.03em;
+}
+
+.font-accent {
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  letter-spacing: 0.18em;
+}
+
+#root {
+  @apply min-h-screen;
+}
+
+.dark body {
+  @apply bg-dusk text-white;
+}
+
+.panel {
+  @apply rounded-3xl border border-white/60 bg-white/80 shadow-panel backdrop-blur dark:border-white/10 dark:bg-slate-900/70;
+}
+
+.field {
+  @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-200 dark:border-slate-700 dark:bg-slate-950 dark:text-white;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-2xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-2xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800;
+}
