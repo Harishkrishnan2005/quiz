@@ -32,12 +32,12 @@ const corsOptions = {
   credentials: true
 };
 
+app.use(express.json({ limit: "2mb" }));
+app.use(express.urlencoded({ extended: true }));
 app.use(
   cors(corsOptions)
 );
 app.options("*", cors(corsOptions));
-app.use(express.json({ limit: "2mb" }));
-app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(
@@ -46,6 +46,10 @@ app.use(
     max: 300
   })
 );
+
+app.get("/", (_req, res) => {
+  res.send("Backend API is running");
+});
 
 app.get("/api/health", (_req, res) => {
   res.json({ success: true, message: "SkillForge API is running" });
