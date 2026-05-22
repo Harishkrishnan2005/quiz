@@ -3,8 +3,29 @@ import axios from "axios";
 import { store } from "../app/store";
 import { logout, setCredentials } from "../features/auth/authSlice";
 
+const resolveApiBaseUrl = () => {
+  const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+  const fallbackBaseUrl = "http://localhost:5000/api";
+
+  if (!configuredBaseUrl) {
+    return fallbackBaseUrl;
+  }
+
+  try {
+    const url = new URL(configuredBaseUrl);
+
+    if (!url.pathname || url.pathname === "/") {
+      url.pathname = "/api";
+    }
+
+    return url.toString().replace(/\/$/, "");
+  } catch {
+    return configuredBaseUrl.replace(/\/$/, "");
+  }
+};
+
 export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api",
+  baseURL: resolveApiBaseUrl(),
   withCredentials: true
 });
 
