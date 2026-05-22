@@ -15,12 +15,27 @@ import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 
 export const app = express();
 
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin) {
+      callback(null, true);
+      return;
+    }
+
+    if (env.clientUrls.includes(origin)) {
+      callback(null, true);
+      return;
+    }
+
+    callback(new Error(`Origin ${origin} is not allowed by CORS`));
+  },
+  credentials: true
+};
+
 app.use(
-  cors({
-    origin: env.clientUrl,
-    credentials: true
-  })
+  cors(corsOptions)
 );
+app.options("*", cors(corsOptions));
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
